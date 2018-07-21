@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	
+      	function text(){
+      		window.location.href = 'page/text.html';
+      	}
+      	
+      	
+      	function number(){
+      		window.location.href = 'page/number.html';
+      	}
+    </script>
+    <style>
+    	body{
+    		background-color: #b3d9ff;
+    	}
+    	.button{
+    		width: 13rem;height: 5rem;border-radius: 3rem;font-size: 1.57rem;
+    	}
+    </style>
+</head>
+<body>
+	<div>
+		
+		<div style="text-align: center;margin-top: 13rem;">
+			<button type="button" class="mui-btn mui-btn-royal button" onclick="text();">encryption</button> 
+		</div>
+		
+		<div style="text-align: center;margin-top: 5rem;">
+			<button type="button" class="mui-btn mui-btn-royal button" onclick="number();">Bin-Dex-Hex</button> 
+		</div>
+	</div>
+</body>
+</html>

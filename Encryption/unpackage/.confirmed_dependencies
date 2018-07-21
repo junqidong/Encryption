@@ -1,0 +1,18 @@
+{
+  "index.html": {
+    "refer": [
+      "page/number.html",
+      "page/text.html"
+    ]
+  },
+  "page/number.html": {
+    "refer": [
+      "index.html"
+    ]
+  },
+  "page/text.html": {
+    "refer": [
+      "index.html"
+    ]
+  }
+}

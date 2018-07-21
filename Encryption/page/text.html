@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+	    <script src="../js/jquery-3.1.1.min.js"></script>
+	    <script type="text/javascript" src="../js/src/core.js" ></script>
+	    <script type="text/javascript" src="../js/src/crypto-js.js" ></script>
+	    <script type="text/javascript" src="../js/src/pad-zeropadding.js" ></script>
+	    <script type="text/javascript" src="../js/src/aes.js" ></script>
+	     <script type="text/javascript" src="../js/src/mode-ecb.js" ></script>
+	    <script type="text/javascript" src="../js/src/pad-nopadding.js" ></script>
+	    <link href="../css/mui.min.css" rel="stylesheet"/> 
+	</head>
+	<style>
+		body{
+    		background-color: #b3d9ff;
+    	}
+    	.button{
+    		width: 3.3rem;height: 3.3rem;border-radius: 1.5rem;font-size: 0.8rem;
+    		background-color: #AAAAAA;
+    	}
+    	.r{position:fixed; bottom:0;}
+	</style>
+	<script>
+		function aesEncrypt(data, key) {
+            var encrypted = CryptoJS.AES.encrypt(data, key, {
+                mode: CryptoJS.mode.ECB,
+                padding: CryptoJS.pad.Pkcs7
+            });
+            return encrypted.toString();
+        }
+
+        function aesDecrypt(encrypted, key) {
+            var decrypted = CryptoJS.AES.decrypt(encrypted, key, {
+                mode: CryptoJS.mode.ECB,
+                padding: CryptoJS.pad.Pkcs7
+            });
+            decrypted = CryptoJS.enc.Utf8.stringify(decrypted);
+            return decrypted;
+        }
+        
+		function jiami(){
+			var pwd = $("#pwd").val();
+			if(pwd == ""){
+				alert("   Please enter your key");
+				return;
+			}
+			var data = $("#up").val();
+			if(data == ""){
+				alert("   Please enter your data");
+				return;
+			}
+			var str = aesEncrypt(data,pwd);
+			$("#down").val(str);
+		}
+		function jiemi(){
+			var pwd = $("#pwd").val();
+			if(pwd == ""){
+				alert("   Please enter your key");
+				return;
+			}
+			var data = $("#up").val();
+			if(data == ""){
+				alert("   Please enter your data");
+				return;
+			}
+			var str = aesDecrypt(data,pwd);
+			$("#down").val(str);
+		}
+		
+		function empty(){
+			$("#pwd").val("");
+			$("#up").val("");
+			$("#down").val("");
+		}
+		function toNumber(){
+			window.location.href = "number.html";
+		}
+		function toText(){
+			window.location.href = "text.html";
+		}
+	</script>
+	<body>
+		<div>
+			<textarea id="up" style="width: 90%;margin-left: 1.3rem;margin-top:1rem;height: 15rem;"></textarea>
+		</div>
+		<div>
+			<input id="pwd" style="width: 11rem;height: 3rem;margin-left: 1.3rem;" placeholder=" Please enter your key"/>
+			<button type="button" style="margin-left: 0rem;" class="mui-btn  button" onclick="jiami();"><span style="color: white;">encrypt</span></button>
+			<button type="button" style="margin-left: 0rem;" class="mui-btn  button" onclick="jiemi();"><span style="color: white;">decrypt</span></button>
+			<button type="button" style="margin-left: 0rem;" class="mui-btn  button" onclick="empty();"><span style="color: white;">Clear</span></button>
+		</div>
+		<div>
+			<textarea id="down" style="width: 90%;margin-left: 1.3rem;margin-top:1rem;height: 15rem;"></textarea>
+		</div>
+		<!--botton-->
+	
+	</body>
+	<div>
+		<div class="r" style="width: 100%;height: 3rem;background-color: #2AC845;font-size: 1.5rem;font-family: STKaiti;">
+			<div style="width: 50%;height:3rem;background-color: #EC971F;float: left;text-align: center;line-height: 3rem;"  onclick="toNumber();">
+				<span>Bin-Dex-Hex conversion</span>
+			</div>
+			<div style="width: 50%;height:3rem;background-color: #2AC845;float: right;text-align: center;line-height: 3rem;" onclick="toText();">
+				<span>encryption</span>
+			</div>
+	    </div>
+	</div>
+</html>
